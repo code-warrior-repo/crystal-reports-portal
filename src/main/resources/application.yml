@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: crystal-reports-portal
+
+  mvc:
+    view:
+      prefix: /WEB-INF/jsp/
+      suffix: .jsp
+
+  datasource:
+    jndi-name: java:comp/env/jdbc/ReportsDS
+
+server:
+  servlet:
+    session:
+      cookie:
+        http-only: true
+        secure: true
+        same-site: lax
+
+reports:
+  rpt-root-path: /opt/company/reports/rpt
+  launch:
+    shared-secret: change-me-use-env-or-liberty-variable
+    max-token-age-seconds: 300
+  security:
+    developer-roles:
+      - DEVELOPER
+      - REPORT_ADMIN

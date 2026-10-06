@@ -1,0 +1,29 @@
+<server description="Crystal Reports Portal">
+
+    <featureManager>
+        <feature>springBoot-4.0</feature>
+        <feature>servlet-6.1</feature>
+        <feature>pages-4.0</feature>
+        <feature>jdbc-4.3</feature>
+    </featureManager>
+
+    <httpEndpoint id="defaultHttpEndpoint"
+                  host="*"
+                  httpPort="9080"
+                  httpsPort="9443"/>
+
+    <library id="JdbcLib">
+        <fileset dir="${server.config.dir}/jdbc" includes="*.jar"/>
+    </library>
+
+    <dataSource id="ReportsDS" jndiName="jdbc/ReportsDS">
+        <jdbcDriver libraryRef="JdbcLib"/>
+        <!-- Add vendor-specific properties, for example Oracle:
+        <properties.oracle URL="jdbc:oracle:thin:@//host:1521/service"
+                           user="${env.DB_USER}"
+                           password="${env.DB_PASSWORD}"/>
+        -->
+    </dataSource>
+
+    <springBootApplication location="crystal-reports-portal.war"/>
+</server>
